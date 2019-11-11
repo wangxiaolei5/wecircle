@@ -47,6 +47,9 @@ app.use(function(req, res, next){
         res.json({code:1000, message:'无效的token.'})
     }
 })
+app.use('/*.html', function(req,res){
+    res.sendFile("./public/index.html")
+});
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
