@@ -11,7 +11,9 @@ var postRouter = require('./routes/post');
 var likecommentRouter = require('./routes/likecomment');
 var messageRouter = require('./routes/message');
 var app = express();
-
+app.get('/', function(req,res){
+    res.sendFile(__dirname + 'public/index.html')
+});
 var mongoose = require('mongoose');
 // 开启数据库连接
 mongoose.connect('mongodb://127.0.0.1:27017/wecircle',{ useNewUrlParser: true ,useCreateIndex: true})
@@ -47,9 +49,7 @@ app.use(function(req, res, next){
         res.json({code:1000, message:'无效的token.'})
     }
 })
-app.get('/', function(req,res){
-    res.sendFile(__dirname + 'public/index.html')
-});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
