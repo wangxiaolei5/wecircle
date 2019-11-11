@@ -11,9 +11,9 @@ var postRouter = require('./routes/post');
 var likecommentRouter = require('./routes/likecomment');
 var messageRouter = require('./routes/message');
 var app = express();
-app.get('/', function(req,res){
-    res.sendFile(__dirname + '/public/index.html')
-});
+// app.get('/', function(req,res){
+//     res.sendFile(__dirname + '/public/index.html')
+// });
 var mongoose = require('mongoose');
 // 开启数据库连接
 mongoose.connect('mongodb://127.0.0.1:27017/wecircle',{ useNewUrlParser: true ,useCreateIndex: true})
@@ -56,7 +56,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/post', postRouter);
 app.use('/likecomment', likecommentRouter);
