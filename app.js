@@ -12,7 +12,7 @@ var likecommentRouter = require('./routes/likecomment');
 var messageRouter = require('./routes/message');
 var app = express();
 app.get('/', function(req,res){
-    res.sendFile(__dirname + 'public/index.html')
+    res.sendFile(__dirname + '/public/index.html')
 });
 var mongoose = require('mongoose');
 // 开启数据库连接
