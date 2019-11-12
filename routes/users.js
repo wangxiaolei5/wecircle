@@ -62,8 +62,6 @@ router.get('/phonecode', phonecodeLimiter, (req, res, next)=> {
         })
         return
     }
-    console.log('req.query.phoneNum')
-    console.log(req.query.phoneNum)
     sms.sendSms({phonenum: req.query.phoneNum},function(result){
         res.json({
             code: 0,

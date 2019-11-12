@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var tokenUtil = require('./util/token');
 var config = require('./config');
+var history = require('connect-history-api-fallback');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -11,6 +12,7 @@ var postRouter = require('./routes/post');
 var likecommentRouter = require('./routes/likecomment');
 var messageRouter = require('./routes/message');
 var app = express();
+app.use(history());
 // app.get('/', function(req,res){
 //     res.sendFile(__dirname + '/public/index.html')
 // });
