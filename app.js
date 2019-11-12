@@ -25,8 +25,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/wecircle',{ useNewUrlParser: true ,u
     });
 //跨域配置 本地调试使用
 app.use(function(req, res, next){
-    // console.log("req.header===")
-    // console.log(req.headers.origin)
     res.header("Access-Control-Allow-origin", req.headers.origin);
     res.header("Access-Control-Allow-Headers","Origin, X-Request-With, Content-Type, Accept, wec-access-token, Set-Cookie");
     res.header("Access-Control-Allow-Credentials", "true");

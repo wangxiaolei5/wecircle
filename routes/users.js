@@ -46,7 +46,7 @@ var phonecodeLimiter = rateLimit({
 router.get('/phonecode', phonecodeLimiter, (req, res, next)=> {
     if(req.headers.referer) {
         console.log('req.headers.referer')
-        if(req.headers.referer.indexOf('https://app.nihaoshijie.com.cn')> -1||req.headers.referer.indexOf('http://192.168.10.221')> -1) {
+        if(req.headers.referer.indexOf('https://118.178.87.147')> -1||req.headers.referer.indexOf('http://192.168.10.221')> -1) {
 
         } else {
             res.json({
