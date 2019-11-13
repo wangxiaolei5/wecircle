@@ -86,13 +86,13 @@
 
 		// 改变过渡方式，从无动画变成有动画
 		this.lis[cidx].style.transition = 'transform 0.2s ease-out'
-		this.lis[cidx - 1] && (lis[cidx - 1].style.transition = 'transform 0.2s ease-out')
-		this.lis[cidx + 1] && (lis[cidx + 1].style.transition = 'transform 0.2s ease-out')
+		this.lis[cidx - 1] && (this.lis[cidx - 1].style.transition = 'transform 0.2s ease-out')
+		this.lis[cidx + 1] && (this.lis[cidx + 1].style.transition = 'transform 0.2s ease-out')
 
 		// 改变动画后所应该的位移值
 		this.lis[cidx].style.transform = 'translate3d(0,0,0)'
-		this.lis[cidx - 1] && (lis[cidx - 1].style.transform = 'translate3d(-' + this.scaleW + 'px,0,0)')
-		this.lis[cidx - 1] && (lis[cidx - 1].style.transform = 'translate3d(-' + this.scaleW + 'px,0,0)')
+		this.lis[cidx - 1] && (this.lis[cidx - 1].style.transform = 'translate3d(-' + this.scaleW + 'px,0,0)')
+		this.lis[cidx - 1] && (this.lis[cidx - 1].style.transform = 'translate3d(-' + this.scaleW + 'px,0,0)')
 
 		for(var i = 0; i < this.divider.children.length; i++) {
 			var current = this.divider.children[i].style
