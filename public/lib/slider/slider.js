@@ -3,8 +3,8 @@
 	function Slider (opts) {
 		 var imgWrap = document.createElement('DIV')
 		 imgWrap.style.cssText = `
-		 -webkit-transform:translate3d(0,0,3px);
-		 -webkit-transition:opacity 200ms;
+		 transform:translate3d(0,0,3px);
+		 transition:opacity 200ms;
 		 opacity:0;
 		 position:fixed;
 		 top:0;
@@ -39,7 +39,7 @@
 			li.style.cssText = "position:absolute;display:flex;align-items:center;overflow:hidden;height:100%"
 			var item = data[i]
 			li.style.width = window.innerWidth + 'px';
-			li.style.webkitTransform = 'translate3d(' + (i - this.idx) * this.scaleW + 'px, 0, 0)'
+			li.style.transform = 'translate3d(' + (i - this.idx) * this.scaleW + 'px, 0, 0)'
 			if (item) {
 				if(item['height'] / item['width'] > this.radio) {
 					li.innerHTML = '<img style="max-width:100%;max-height:100%;height:"'+ window.innerHeight+'px;margin:0 auto;" src="'+ item["img"] +'">'
@@ -55,7 +55,7 @@
 		wrap.appendChild(this.outer)
 
 		this.divider = document.createElement('ul');
-		this.divider.style.cssText = 'position:absolute;bottom:24px;left:50%;font-size:19px;-webkit-transform:translateX(-50%);color:rgb(109,109,109)'
+		this.divider.style.cssText = 'position:absolute;bottom:24px;left:50%;font-size:19px;transform:translateX(-50%);color:rgb(109,109,109)'
 		// 渲染分页的UI样式
 		for(var k = 0; k < len; k++) {
 			var dividerItem = document.createElement("li");
@@ -85,14 +85,14 @@
 		this.idx = cidx
 
 		// 改变过渡方式，从无动画变成有动画
-		lis[cidx].style.webkitTransition = '-webkit-transform 0.2s ease-out'
-		lis[cidx - 1] && (lis[cidx - 1].style.webkitTransition = '-webkit-transform 0.2s ease-out')
-		lis[cidx + 1] && (lis[cidx + 1].style.webkitTransition = '-webkit-transform 0.2s ease-out')
+		this.lis[cidx].style.transition = 'transform 0.2s ease-out'
+		this.lis[cidx - 1] && (lis[cidx - 1].style.transition = 'transform 0.2s ease-out')
+		this.lis[cidx + 1] && (lis[cidx + 1].style.transition = 'transform 0.2s ease-out')
 
 		// 改变动画后所应该的位移值
-		lis[cidx].style.webkitTransform = 'translate3d(0,0,0)'
-		lis[cidx - 1] && (lis[cidx - 1].style.webkitTransform = 'translate3d(-' + this.scaleW + 'px,0,0)')
-		lis[cidx - 1] && (lis[cidx - 1].style.webkitTransform = 'translate3d(-' + this.scaleW + 'px,0,0)')
+		this.lis[cidx].style.transform = 'translate3d(0,0,0)'
+		this.lis[cidx - 1] && (lis[cidx - 1].style.transform = 'translate3d(-' + this.scaleW + 'px,0,0)')
+		this.lis[cidx - 1] && (lis[cidx - 1].style.transform = 'translate3d(-' + this.scaleW + 'px,0,0)')
 
 		for(var i = 0; i < this.divider.children.length; i++) {
 			var current = this.divider.children[i].style
@@ -138,9 +138,9 @@
 					var now = evt.touches
 					self.pinchScale = self.pinchScaleEnd * (getDistance(now[0],now[1]) / getDistance(self.pinchStart[0],self.pinchStart[1]))
 					// 首先将动画暂停
-					target.style.webkitTransition = 'none';
+					target.style.transition = 'none';
 					// 通过scale设置方法系数
-					target.style.webkitTransform ='scale3d(' + self.pinchScale +',' + self.pinchScale + ',1)';
+					target.style.transform ='scale3d(' + self.pinchScale +',' + self.pinchScale + ',1)';
 					return
 				} 
 				if((self.joinPinchScale || self.joinDbClickScale) && self.oneTouch) { //处理双击，双指放大状态时的拖动行为
@@ -149,8 +149,8 @@
 					// 拖动时，保持图片缩放不变，只位移
 					var _scale = self.joinPinchScale ? self.pinchScale : self.scaleMax
 					// 首先将动画暂停
-					target.style.webkitTransition = "none"
-					target.style.webkitTransform = 'scale3d(' +_scale+','+_scale + ',1) translate3d('+(self_offsetX*0.5) + 'px,' + (self._offsetY*0.5) + 'px, 0)'
+					target.style.transition = "none"
+					target.style.transform = 'scale3d(' +_scale+','+_scale + ',1) translate3d('+(self_offsetX*0.5) + 'px,' + (self._offsetY*0.5) + 'px, 0)'
 					return
 				}
 				
@@ -165,8 +165,8 @@
 				// 结束索引
 				var m = i + 3 
 				for(i;i < m;i++) {
-					list[i] && (list[i].style.webkitTransition = '-webkit-transform 0s ease-out')
-					list[i] && (list[i].style.webkitTransform = 'translate3d(' + ((i-self.idx) * self.scaleW + self.offsetX) + 'px,0,0)')
+					list[i] && (list[i].style.transition = 'transform 0s ease-out')
+					list[i] && (list[i].style.transform = 'translate3d(' + ((i-self.idx) * self.scaleW + self.offsetX) + 'px,0,0)')
 				}
 			}
 		}
@@ -180,8 +180,8 @@
 				self._offsetEndY = self._offsetY;
 
 				if(self.pinchScale < 1) {
-					target.style.webkitTransition = '-webkit-tranform .2s ease-in-out'
-					target.style.webkitTransform = 'scale3d(1,1,1)'
+					target.style.transition = 'tranform .2s ease-in-out'
+					target.style.transform = 'scale3d(1,1,1)'
 					self.pinchScale = 1;
 				}
 			}
@@ -217,8 +217,8 @@
 			var d = evt
 			if (target.nodeName === 'IMG') {
 				if(self.joinDbClickScale || self.joinPinchScale) {
-					target.style.webkitTransition = '-webkit-transform .2s ease-in-out'
-					target.style.webkitTransform = 'scale3d(1,1,1)'
+					target.style.transition = 'transform .2s ease-in-out'
+					target.style.transform = 'scale3d(1,1,1)'
 
 					self.joinDbClickScale = false
 					self.joinPinchScale = false
@@ -227,10 +227,10 @@
 				} else {
 					self.originX = d.offsetX;
 					self.originY = d.offsetY;
-					target.style.webkitTransition = '-webkit-transform .2s ease-in-out'
-					target.style.webkitTransform = 'scale3d(' + self.scaleMax + ',' + self.scaleMax + ',1)'
-					target.style.webkitTransformOriginX = self.originX + 'px'
-					target.style.webkitTransformOriginY = self.originY + 'px'
+					target.style.transition = 'transform .2s ease-in-out'
+					target.style.transform = 'scale3d(' + self.scaleMax + ',' + self.scaleMax + ',1)'
+					target.style.transformOriginX = self.originX + 'px'
+					target.style.transformOriginY = self.originY + 'px'
 
 					self.pinchScale  = self.scaleMax
 					self.joinDbClickScale = true
