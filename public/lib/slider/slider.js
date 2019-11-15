@@ -159,7 +159,7 @@
 			if (self.oneTouch) {
 				// 计算手指的偏移量
 				self.offsetX = evt.targetTouches[0].pageX - self.startX
-				var lis = outer.getElementsByTagName('li')
+				var list = outer.getElementsByTagName('li')
 				// 起始索引
 				var i = self.idx - 1 
 				// 结束索引
@@ -272,7 +272,7 @@
 
 		// 先将透明度设置为1，这里采用的是一个模拟FadeIn的动画
 		setTimeout(function() {
-			self.wrap.style.opcity = 1
+			self.wrap.style.opacity = 1
 		})
 
 		outer.addEventListener('touchstart',startHandler)
